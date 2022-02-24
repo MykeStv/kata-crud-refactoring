@@ -1,6 +1,6 @@
 # [Problema]
 
-Fork por **_Maycol Steven Rincon_**
+Fork por **_Maycol Steven Rincon B_**
 
 Pueden ver los siguientes videos para poder comprender la base del código fuente dentro de este repositorio.
 
