@@ -13,9 +13,9 @@ public class ToDo {
     private String name;
     private boolean completed;
 
-    /*@ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "todolist_id")
-    private ToDoList todoList;*/
+    private ToDoList todolist;
 
     //CONSTRUCTOR
     public ToDo() {
@@ -24,6 +24,12 @@ public class ToDo {
     public ToDo(String name, boolean completed) {
         this.name = name;
         this.completed = completed;
+    }
+
+    public ToDo(String name, boolean completed, ToDoList todolist) {
+        this.name = name;
+        this.completed = completed;
+        this.todolist = todolist;
     }
 
     //GETTER && SETTER
@@ -51,4 +57,11 @@ public class ToDo {
         this.completed = completed;
     }
 
+    public ToDoList getTodolist() {
+        return todolist;
+    }
+
+    public void setTodolist(ToDoList todolist) {
+        this.todolist = todolist;
+    }
 }

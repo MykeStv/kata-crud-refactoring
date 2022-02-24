@@ -20,12 +20,18 @@ public class ToDoListController {
     }
 
     @PostMapping
-    public ToDoList saveTodoList(ToDoList todoList) {
+    public ToDoList saveTodoList(@RequestBody ToDoList todoList) {
         return this.listService.saveList(todoList);
     }
 
     @PutMapping(path = "/{listid}")
     public ToDoList addTodo(@PathVariable("listid") Long listid,@RequestBody ToDo todo) {
         return this.listService.addTodo(listid, todo);
+    }
+
+    //Delete todo
+    @DeleteMapping(path = "/todo/{id}")
+    public void deleteTodo(@PathVariable("id") Long id) {
+        this.listService.deleteTodoById(id);
     }
 }

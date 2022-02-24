@@ -2,7 +2,9 @@ package co.com.sofka.crud.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "todolist")
@@ -12,16 +14,17 @@ public class ToDoList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<ToDo> todos = new ArrayList<ToDo>();
+    @OneToMany(mappedBy = "todolist", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<ToDo> todos = new HashSet<>();
 
     //CONSTRUCTOR
     public ToDoList() {
     }
 
-    public ToDoList(String name, List<ToDo> todo) {
+    public ToDoList(String name, Set<ToDo> todo) {
         this.name = name;
         this.todos = todo;
     }
@@ -43,11 +46,11 @@ public class ToDoList {
         this.name = name;
     }
 
-    public List<ToDo> getTodo() {
+    public Set<ToDo> getTodo() {
         return todos;
     }
 
-    public void setTodo(List<ToDo> todo) {
+    public void setTodo(Set<ToDo> todo) {
         this.todos = todo;
     }
 }
