@@ -2,7 +2,10 @@ import React from 'react'
 import AddTodo from './AddTodo'
 import TodoTable from './TodoTable'
 
-const ListGomponet = () => {
+const ListGomponet = (props) => {
+
+    console.log(props.lists);
+
     return (
         <div className='list-group'>
             <div>
