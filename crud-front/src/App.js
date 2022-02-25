@@ -7,9 +7,9 @@ import ListGomponet from './components/ListGomponet';
 function App() {
 
   const DATA = [
-    { id: 1, name: 'Comer' },
-    { id: 2, name: 'Dormir' },
-    { id: 3, name: 'Estudiar' },
+    { id: 1, name: 'Comer', todo:[{ id: 1, name: 'dinner', completed: true }] },
+    { id: 2, name: 'Dormir', todo:[] },
+    { id: 3, name: 'Estudiar', todo:[] },
   ]
 
   //Estado de las listas
@@ -25,12 +25,24 @@ function App() {
 
   }
 
+  const deleteList = (listId) => {
+    setLists( lists.filter( list => list.id !== listId) )
+  }
+
 
   return (
     <div className="App">
       <h1>TO-DO LIST</h1>
       <AddListForm addList={addList} />
-      <ListGomponet lists={lists} />
+      {
+        lists.map(list => (
+
+          <ListGomponet key={list.id} list={list} deleteList={deleteList} />
+
+        ))
+        
+      }
+      
     </div>
   );
 }

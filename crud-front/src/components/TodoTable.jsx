@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const TodoTable = () => {
+const TodoTable = (props) => {
+
+    const [todos, setTodos] = useState(props.todos);
+
     return (
         <table>
             <thead>
@@ -12,17 +15,23 @@ const TodoTable = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Dormir</td>
-                    <td>
-                        <input type="checkbox" name="" id="" />
-                    </td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Eliminar</button>
-                    </td>
-                </tr>
+                {
+                    todos.map((todo) => (
+
+                        <tr key={todo.id}>
+                            <td>{todo.id}</td>
+                            <td>{todo.name}</td>
+                            <td>
+                                <input type="checkbox" name="" id="" />
+                            </td>
+                            <td>
+                                <button>Editar</button>
+                                <button>Eliminar</button>
+                            </td>
+                        </tr>
+
+                    ))
+                }
             </tbody>
         </table>
     )
