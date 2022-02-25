@@ -8,6 +8,8 @@ import co.com.sofka.crud.repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Collectors;
+
 @Service
 public class ToDoListService {
 
@@ -47,6 +49,7 @@ public class ToDoListService {
         var listTodo = this.toDoListRepository.findById(listid).orElseThrow();
 
 
+        todo.setTodolist(listTodo);
 
         //adicionar un nuevo to-do a la lista
         listTodo.getTodo().add(todo);
@@ -55,8 +58,39 @@ public class ToDoListService {
 
     }
 
+    //Actualizar to-do
+    public ToDoList updateTodo(Long listid, ToDo todo) {
+        var listTodo = this.toDoListRepository.findById(listid).orElseThrow();
+
+        //No funcionó por mala implementacion del metodo stream
+        /*var newList = (ToDoList) listTodo.getTodo().stream().map(item -> {
+                if(item.getId().equals(todo.getId())){
+                    item.setName(todo.getName());
+                    item.setCompleted(todo.isCompleted());
+                }
+            return item;
+        });*/
+        // Se recorre la lista de to-do para realizar el update
+        for (var item : listTodo.getTodo()) {
+            if(item.getId().equals(todo.getId())) {
+                item.setName(todo.getName());
+                item.setCompleted(todo.isCompleted());
+            }
+        }
+
+        return this.toDoListRepository.save(listTodo);
+
+    }
+
+
+    //Eliminar lista
+    public void deleteList(Long id) {
+        this.toDoListRepository.deleteById(id);
+    }
+
     //Eliminar un todo de la lista
     public void deleteTodoById(Long id) {
-        this.todoRepository.deleteById(id);
+        var todo = this.todoRepository.findById(id).orElseThrow();
+        this.todoRepository.delete(todo);
     }
 }

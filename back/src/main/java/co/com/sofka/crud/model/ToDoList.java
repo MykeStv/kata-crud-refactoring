@@ -1,11 +1,19 @@
 package co.com.sofka.crud.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/*@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")*/
 @Entity
 @Table(name = "todolist")
 public class ToDoList {
@@ -17,7 +25,8 @@ public class ToDoList {
 
     private String name;
 
-    @OneToMany(mappedBy = "todolist", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "todolist", orphanRemoval = true, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<ToDo> todos = new HashSet<>();
 
     //CONSTRUCTOR

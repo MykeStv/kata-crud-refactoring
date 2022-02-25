@@ -29,6 +29,18 @@ public class ToDoListController {
         return this.listService.addTodo(listid, todo);
     }
 
+    //update
+    @PutMapping(path = "/{listid}/update")
+    public ToDoList updateTodo(@PathVariable("listid") Long listid, @RequestBody ToDo todo) {
+        return this.listService.updateTodo(listid, todo);
+    }
+
+    //Delete list
+    @DeleteMapping(path = "/{id}")
+    public void deleteList(@PathVariable("id") Long id){
+        this.listService.deleteList(id);
+    }
+
     //Delete todo
     @DeleteMapping(path = "/todo/{id}")
     public void deleteTodo(@PathVariable("id") Long id) {

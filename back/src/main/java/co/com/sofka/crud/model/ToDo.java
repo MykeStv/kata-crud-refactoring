@@ -1,7 +1,15 @@
 package co.com.sofka.crud.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
+/*@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")*/
 @Entity
 @Table(name = "todos")
 public class ToDo {
@@ -13,8 +21,9 @@ public class ToDo {
     private String name;
     private boolean completed;
 
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "todolist_id")
+    //@JoinColumn(name = "todolist_id")
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JsonIgnore
     private ToDoList todolist;
 
     //CONSTRUCTOR
@@ -26,11 +35,6 @@ public class ToDo {
         this.completed = completed;
     }
 
-    public ToDo(String name, boolean completed, ToDoList todolist) {
-        this.name = name;
-        this.completed = completed;
-        this.todolist = todolist;
-    }
 
     //GETTER && SETTER
     public Long getId() {
