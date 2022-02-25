@@ -8,6 +8,7 @@ import co.com.sofka.crud.repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +22,11 @@ public class ToDoListService {
     //Metodo para obtener los datos
     public Iterable<ToDoList> getList() {
         return this.toDoListRepository.findAll();
+    }
+
+    //Metodo para obtener la lista por id
+    public Optional<ToDoList> getListById(Long id) {
+        return this.toDoListRepository.findById(id);
     }
 
     //Metodo para guardar datos
@@ -58,6 +64,15 @@ public class ToDoListService {
 
     }
 
+    //Actualizar lista
+    public ToDoList updateList(ToDoList todoList) {
+        var list = this.toDoListRepository.findById(todoList.getId()).orElseThrow();
+
+        list.setName(todoList.getName());
+
+        return this.toDoListRepository.save(list);
+    }
+
     //Actualizar to-do
     public ToDoList updateTodo(Long listid, ToDo todo) {
         var listTodo = this.toDoListRepository.findById(listid).orElseThrow();
@@ -70,6 +85,7 @@ public class ToDoListService {
                 }
             return item;
         });*/
+
         // Se recorre la lista de to-do para realizar el update
         for (var item : listTodo.getTodo()) {
             if(item.getId().equals(todo.getId())) {

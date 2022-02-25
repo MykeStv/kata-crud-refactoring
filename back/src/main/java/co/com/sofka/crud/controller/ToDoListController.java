@@ -7,6 +7,8 @@ import co.com.sofka.crud.service.ToDoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/list")
 public class ToDoListController {
@@ -19,18 +21,29 @@ public class ToDoListController {
         return this.listService.getList();
     }
 
+    @GetMapping(path = "/{id}")
+    public Optional<ToDoList> getListId(@PathVariable("id") Long id) {
+        return this.listService.getListById(id);
+    }
+
     @PostMapping
     public ToDoList saveTodoList(@RequestBody ToDoList todoList) {
         return this.listService.saveList(todoList);
     }
 
-    @PutMapping(path = "/{listid}")
+    @PostMapping(path = "/{listid}")
     public ToDoList addTodo(@PathVariable("listid") Long listid,@RequestBody ToDo todo) {
         return this.listService.addTodo(listid, todo);
     }
 
-    //update
-    @PutMapping(path = "/{listid}/update")
+    //update list
+    @PutMapping(path = "/update")
+    public ToDoList updateList(@RequestBody ToDoList todoList) {
+        return this.listService.updateList(todoList);
+    }
+
+    //update to-do
+    @PutMapping(path = "/{listid}/todo-update")
     public ToDoList updateTodo(@PathVariable("listid") Long listid, @RequestBody ToDo todo) {
         return this.listService.updateTodo(listid, todo);
     }
