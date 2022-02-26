@@ -9,16 +9,31 @@ export const ACTIONS = {
 
 }
 
+
 const reducer = (lists, action) => {
     switch (action.type) {
         case ACTIONS.ADD_LIST:
-            return [...lists, addListApi(action.payload.name)]
+            const res = addListApi(action.payload.name)
+            change = !change;
+            return [...lists, res]
     }
+}
+
+const addListPromise = async (req) => {
+    const res = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(req)
+    }).then(res => res.json())
+
+    return await res;
 }
 
 const addListApi = (name) => {
 
-    console.log(name)
+    // console.log(name)
 
     const req = {
         id: null,
@@ -26,13 +41,8 @@ const addListApi = (name) => {
         todo: []
     };
 
-    const res = fetch(URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(req)
-    }).then(res => res.json())
+    const res = addListPromise(req)
+    console.log(res);
 
     return res;
     // .then(listTodos => dispatch({ type: ACTIONS.ADD_LIST, payload: listTodos }))
@@ -47,6 +57,7 @@ const TodoList = () => {
     const addList = (name) => {
         dispatch({ type: ACTIONS.ADD_LIST, payload: { name: name } })
     }
+
 
     return (
         <>

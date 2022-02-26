@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { change } from '../components/TodoList';
+
 
 //Se crea un contexto para el api
 export const ApiContext = React.createContext()
@@ -22,7 +24,7 @@ export function ContextProvider({ children }) {
 
         getData()
 
-    }, [])
+    }, [change])
 
     return (
         <ApiContext.Provider value={lists}>
