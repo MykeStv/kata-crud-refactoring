@@ -1,37 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { change } from '../components/TodoList';
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react'
 
 
-//Se crea un contexto para el api
-export const ApiContext = React.createContext()
 
-export const URL = 'http://localhost:8080/list';
+/* //Se crea un contexto para el api
+export const ApiContext = createContext()
+
+
 
 //Funcion que provee el contexto
 export function ContextProvider({ children }) {
 
-    const [lists, setLists] = useState([])
+    // const [lists, setLists] = useState([])
 
-    useEffect(() => {
 
-        const getData = async () => {
-            //Trae la data de la api
-            const DATA = await fetch(URL)
-                .then(res => res.json());
-            console.log(DATA);
-            setLists(DATA)
-        }
-
-        getData()
-
-    }, [change])
 
     return (
-        <ApiContext.Provider value={lists}>
+        <ApiContext.Provider value={{ lists, dispatch }}>
             {children}
         </ApiContext.Provider>
 
     )
 }
-
+ */
 
