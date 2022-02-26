@@ -1,6 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import { set } from 'react-hook-form';
 import AddListForm from './components/AddListForm';
 import ListGomponet from './components/ListGomponet';
+
+const initialState = [];
+// Creamos un contexto, de momento sin default values
+const ListContext = createContext();
+
+const reducer = (state, action) => {
+
+  switch (action.type) {
+    case 'add-list':
+      const newList = state
+      return 
+  
+    default:
+      break;
+  }
+
+}
+
+const ListProvider = ({children}) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const value = {state, dispatch};
+
+  return <ListContext.Provider value={value}>{children}</ListContext.Provider>
+};
 
 
 
@@ -47,33 +73,45 @@ function App() {
       },
       body: JSON.stringify(req),
       
-    }).then(
-      res => res.json()
-    )
-
+    }).then(res => res.json())
+    .then(newList => setLists([...lists, newList]))
+    /* .then( (list) => {
+      dispatch({type: 'add-list'})
+    }) */
     
-
+    
   }
 
   const deleteList = (listId) => {
     setLists( lists.filter( list => list.id !== listId) )
+
+    fetch(url +'/'+ listId, {
+      method: 'DELETE'
+    }).then(()=> {
+      setLists( lists.filter( list => list.id !== listId) )
+    })
+    
   }
 
 
   return (
-    <div className="App">
-      <h1>TO-DO LIST</h1>
-      <AddListForm addList={addList} />
-      {
-        lists.map(list => (
-
-          <ListGomponet key={list.id} list={list} deleteList={deleteList} />
-
-        ))
-        
-      }
+    <ListProvider>
       
-    </div>
+      <div className="App">
+        <h1>TO-DO LIST</h1>
+        <AddListForm addList={addList} />
+        {
+          lists.map(list => (
+
+            <ListGomponet key={list.id} list={list} deleteList={deleteList} />
+
+          ))
+          
+        }
+        
+      </div>
+
+    </ListProvider>
   );
 }
 

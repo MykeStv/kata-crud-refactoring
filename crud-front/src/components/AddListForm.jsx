@@ -35,7 +35,7 @@ const AddListForm = (props) => {
             // required
             // minLength={2}
             />
-            <button type="submit">Nueva Lista</button>
+            <button type="submit" className='new-list'>Nueva Lista</button>
         </form>
     )
 }
