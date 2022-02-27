@@ -27,13 +27,14 @@ public class ToDoList {
 
     @OneToMany(mappedBy = "todolist", orphanRemoval = true, cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<ToDo> todos = new HashSet<>();
+    private List<ToDo> todos = new ArrayList<>();
+    //private Set<ToDo> todos = new HashSet<>();
 
     //CONSTRUCTOR
     public ToDoList() {
     }
 
-    public ToDoList(String name, Set<ToDo> todo) {
+    public ToDoList(String name, List<ToDo> todo) {
         this.name = name;
         this.todos = todo;
     }
@@ -55,11 +56,11 @@ public class ToDoList {
         this.name = name;
     }
 
-    public Set<ToDo> getTodo() {
+    public List<ToDo> getTodo() {
         return todos;
     }
 
-    public void setTodo(Set<ToDo> todo) {
+    public void setTodo(List<ToDo> todo) {
         this.todos = todo;
     }
 }

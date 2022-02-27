@@ -23,6 +23,7 @@ const ListFormComponent = () => {
         <>
             <form onSubmit={handleSubmit}>
                 <input
+                    className='input-list'
                     type="text"
                     placeholder='Ingresa una actividad'
                     value={nameList}

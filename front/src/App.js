@@ -6,12 +6,15 @@ function App() {
 
 
   return (
-    <div className="App">
-      <ContextProvider>
+    <div className='container'>
 
-        <TodoList />
+      <div className="App">
+        <ContextProvider>
 
-      </ContextProvider>     
+          <TodoList />
+
+        </ContextProvider>     
+      </div>
     </div>
   );
 }

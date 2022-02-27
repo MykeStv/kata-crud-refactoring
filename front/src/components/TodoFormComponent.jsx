@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useTodoFunctions } from '../providers/ContextProvider';
 
+
+
 import TodoComponent from './TodoComponent';
 
 const TodoFormComponent = ({ list }) => {
@@ -23,6 +25,7 @@ const TodoFormComponent = ({ list }) => {
         console.log(todo);
         if (todo.id !== null || todo.id !== undefined) {
             todoFunctions.updateTodo(list.id, todo)
+            setEditing(false)
         } else {
             todoFunctions.addTodo(list.id, todo)
         }
@@ -48,8 +51,8 @@ const TodoFormComponent = ({ list }) => {
                 <input
                     type="text"
                     placeholder='Ingresa un to-do'
-                    value={ }
-                    onChange={e => setTodo(e.target.value)}
+                    value={todo.name}
+                    onChange={e => setTodo({ ...todo, name: e.target.value })}
                     required
                 />
                 {editing && <button type='submit'>Actualizar</button>}

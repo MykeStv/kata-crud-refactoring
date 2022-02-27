@@ -154,7 +154,7 @@ export function ContextProvider({ children }) {
     }
 
     const updateTodo = (listId, todo) => {
-        console.log(todo.id);
+        // console.log(todo.id);
         const req = {
             id: todo.id,
             name: todo.name,
@@ -168,9 +168,8 @@ export function ContextProvider({ children }) {
             },
             body: JSON.stringify(req)
         }).then(res => res.json())
-            .then(res => console.log(res))
             .then(list => {
-                dispatch({ type: ACTIONS.UPDATE_TODO, payload: { list: list, todo: list.todo } })
+                dispatch({ type: ACTIONS.UPDATE_TODO, payload: { list: list, todo: todo } })
             })
 
     }
