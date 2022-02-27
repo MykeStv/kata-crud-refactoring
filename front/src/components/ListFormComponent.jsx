@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react'
+import { useAddList } from '../providers/ContextProvider'
 
 
 
-const ListFormComponent = ({ addList }) => {
+const ListFormComponent = () => {
 
     const [nameList, setNameList] = useState('')
+    const addList = useAddList()
 
     const handleSubmit = (e) => {
         e.preventDefault(); //Evita que se recargue la pagina al submit
