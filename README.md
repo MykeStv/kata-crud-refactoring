@@ -1,6 +1,13 @@
-# [Problema]
+# ACTIVIDAD KATA-CRUD TODO LIST
 
-Fork por **_Maycol Steven Rincon B_**
+## **_Maycol Steven Rincon B_**
+
+El link del video del funcionamiendo es:
+https://youtu.be/0uwFF6YQo48
+
+Muchas gracias coach, Feliz dia
+
+<hr />
 
 Pueden ver los siguientes videos para poder comprender la base del código fuente dentro de este repositorio.
 
