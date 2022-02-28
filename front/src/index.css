@@ -1,18 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+:root {
+  --color-gray-light: rgb(240, 228, 240);
+  --color-purple-light: rgb(177, 142, 175);
+  --color-purple-dark1: #382f38;
+  --color-purple-dark2: #161316;
+  --color-purple-dark3: #494649;
+  --color-purple-1: rgb(117, 0, 121);
+  --color-purple-2: rgb(150, 10, 155);
+  --color-purple-3: rgb(248, 30, 255);
+  --color-purple-4: rgb(232, 119, 236);
+  --color-purple-5: rgb(177, 0, 74);
+  --color-purple-6: rgb(255, 46, 133);
+}
 
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(95, 59, 93);
+  background: var(--color-purple-light);
   color: #fff;
+  font-weight: 300;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
 
 .container {
   display: flex;
@@ -21,11 +35,11 @@ code {
 }
 
 .App {
-  background: rgb(51, 51, 51);
+  background: var(--color-purple-dark1);
   border: 1px solid black;
   margin: 30px 0;
   width: 70%;
-  padding: 0 50px;
+  padding: 10px 50px;
 }
 
 /* =====>>TODO-LIST<<===== */
@@ -33,31 +47,147 @@ code {
   text-align: center;
 }
 .header {
-  font-size: 2rem;
+  font-size: 2.25rem;
 }
 
 /* =====>>LIST-FORM<<===== */
-.input-list {
-  height: 30px;
-  width: 50%;
-  padding: 0 20px;
-  font-size: 1.2rem;
-  border: none;
+.list-form {
+  margin-bottom: 30px;
 }
-
-.list-group {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #000;
+.input-list {
+  background: var(--color-purple-dark2);
+  color: rgb(240, 240, 240);
+  width: 50%;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  outline: none;
+  border: 2px solid var(--color-purple-dark2);
+  border-radius: 3px;
+}
+.input-list:hover,
+.input-list:focus {
+  border-color: var(--color-purple-2);
 }
 
 .new-list {
   padding: 10px 20px;
   margin-left: 10px;
-  background: rgb(82, 0, 85);
+  background: var(--color-purple-1);
   color: #fff;
-  border: none;
+  border: 2px solid var(--color-purple-1);
+  font-size: 1.15rem;
+  font-weight: 500;
+  border-radius: 3px;
 }
 .new-list:hover {
-  background-color: rgb(150, 10, 155);
+  background-color: var(--color-purple-2);
+  border-color: var(--color-purple-2);
+}
+
+/* =====>>LIST-COMPONENT<<===== */
+.list-group {
+  background: var(--color-purple-dark2);
+  margin: 10px;
+  padding: 10px;
+  /* border: 1px solid var(--color-purple-1); */
+  border-radius: 10px;
+}
+.list-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list-header h3 {
+  margin-right: 25px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.list-header button {
+  background: #000;
+  color: var(--color-purple-3);
+  padding: 5px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: 2px solid var(--color-purple-1);
+}
+.list-header button:hover {
+  background: var(--color-purple-2);
+  color: #fff;
+}
+
+.todo-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* =====>>TODO-FORM<<===== */
+.todo-group {
+  width: 80%;
+}
+.form-todo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.input-todo {
+  background-color: var(--color-purple-dark3);
+  color: #fff;
+  width: 60%;
+  margin-right: 10px;
+  padding: 7px 10px;
+  border: 2px solid var(--color-purple-dark3);
+  border-radius: 3px;
+  outline: none;
+}
+.input-todo:hover,
+.input-todo:focus {
+  border: 2px solid var(--color-purple-3);
+}
+
+.form-todo button {
+  background-color: var(--color-purple-1);
+  color: var(--color-gray-light);
+  padding: 7px 10px;
+  border: 2px solid var(--color-purple-1);
+  border-radius: 3px;
+}
+.form-todo button:hover {
+  background: var(--color-purple-3);
+  color: #fff;
+  border-color: var(--color-purple-3);
+}
+
+/* =====>>TODO-TABLE<<===== */
+.todo-table {
+  text-align: center;
+}
+.todo-table table {
+  width: 100%;
+}
+.todo-table table th {
+  color: var(--color-purple-4);
+  font-weight: 500;
+}
+/* .todo-table input[type="checkbox"] {
+  color: chartreuse;
+} */
+.todo-table .btn {
+  padding: 5px 15px;
+  margin: 0 2px;
+  border: none;
+}
+.btn-edit {
+  background: var(--color-purple-2);
+  color: #fff;
+}
+.btn-edit:hover {
+  background: var(--color-purple-3);
+}
+.btn-delete {
+  background: var(--color-purple-5);
+  color: #fff;
+}
+.btn-delete:hover {
+  background-color: var(--color-purple-6);
 }

@@ -11,13 +11,13 @@ const ListComponent = ({ list }) => {
     return (
         <div className='list-group'>
 
-            <div>
+            <div className='list-header'>
                 <h3>{list.name}</h3>
                 <button onClick={() => deleteList(list.id)}>
                     Eliminar
                 </button>
             </div>
-            <div>
+            <div className='todo-component'>
                 <TodoFormComponent list={list} listId={list.id} />
                 {/* <TodoComponent todos={list.todo} listId={list.id} editTodo={activateEdit} /> */}
             </div>

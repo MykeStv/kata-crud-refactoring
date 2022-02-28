@@ -45,10 +45,11 @@ const TodoFormComponent = ({ list }) => {
 
 
     return (
-        <>
+        <div className='todo-group'>
 
-            <form action="" onSubmit={handleSubmit}>
+            <form className='form-todo' action="" onSubmit={handleSubmit}>
                 <input
+                    className='input-todo'
                     type="text"
                     placeholder='Ingresa un to-do'
                     value={todo.name}
@@ -60,7 +61,7 @@ const TodoFormComponent = ({ list }) => {
             </form>
 
             <TodoComponent todos={list.todo} listId={list.id} editTodo={editTodo} />
-        </>
+        </div>
     )
 }
 

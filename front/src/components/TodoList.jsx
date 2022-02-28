@@ -9,12 +9,10 @@ const TodoList = () => {
 
     const lists = useListState()
 
-
-
     return (
         <>
             <h1 className='header center-txt'>To-Do List</h1>
-            <div className='center-txt'>
+            <div className='center-txt list-form'>
                 <ListFormComponent />
             </div>
             {
