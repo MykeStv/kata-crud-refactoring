@@ -37,32 +37,40 @@ const reducer = (lists, action) => {
 
         case ACTIONS.ADD_TODO:
             return lists.map(list => {
-                if (list.id === action.payload.id) {
-                    // return list.todo = action.payload.todo
-                    return list.todo.push(action.payload.todo)
+                if (list.id === action.payload.listId) {
+                    return [...list.todo, action.payload.todo]
+                    // return list.todo.push(action.payload.todo)
+                } else {
+                    return list
                 }
+
             })
 
         case ACTIONS.DELETE_TODO:
             return lists.map(list => {
                 if (list.id === action.payload.listId) {
                     return list.todo.filter(todo => todo.id !== action.payload.todoId)
+                } else {
+                    return list
                 }
             })
 
         case ACTIONS.UPDATE_TODO:
             return lists.map(list => {
-                /* if (list.id === action.payload.list.id) {
+                if (list.id === action.payload.list.id) {
                     return action.payload.list
-                } */
-                if (list.id === action.payload.listId) {
+                }
+                else {
+                    return list
+                }
+                /* if (list.id === action.payload.list.id) {
                     return list.todo.map(todo => {
                         if (todo.id === action.payload.todo.id) {
                             return action.payload.todo
                         }
                     })
 
-                }
+                } */
             })
 
         default:
@@ -128,6 +136,7 @@ export function ContextProvider({ children }) {
     }
 
     const addTodo = (listId, name) => {
+        console.log(listId)
 
         const req = {
             id: null,

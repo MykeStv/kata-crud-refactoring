@@ -23,14 +23,16 @@ const TodoFormComponent = ({ list }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(todo);
-        if (todo.id !== null || todo.id !== undefined) {
+        if (todo.id != null || todo.id != undefined) {
             todoFunctions.updateTodo(list.id, todo)
             setEditing(false)
+            setTodo(initialTodo);
         } else {
-            todoFunctions.addTodo(list.id, todo)
+            todoFunctions.addTodo(list.id, todo.name)
+            setEditing(false)
+            setTodo(initialTodo);
         }
 
-        setTodo(initialTodo);
     }
 
     const editTodo = (todoEdit) => {
